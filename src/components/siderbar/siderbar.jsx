@@ -5,6 +5,7 @@ import { HiUserAdd, HiPhone, HiCog, HiHome } from 'react-icons/hi';
 
 const Sidebar = () => {
     return (
+
         <div className="fixed top-0 left-0 h-full w-64 text-black p-4 z-50" style={{ background: '#F8FAFD' }}>
              <h2 className="text-lg font-bold mb-4">Menu</h2>
             <ul>
