@@ -1,8 +1,9 @@
 
 const initialState = {
     contacts: [],
-    loading: false, // Initial loading state
-};
+    loading: false,
+    error: null,
+  };
 
 
 const contactReducer = (state = initialState, action) => {
@@ -36,8 +37,14 @@ const contactReducer = (state = initialState, action) => {
             return {
                 ...state,
             }
+
+            case "SET_ERROR": // New case for handling errors
+            return {
+                ...state,
+                error: action.payload,
+            };
             
-        break ;
+    
 
         
          
@@ -46,7 +53,7 @@ const contactReducer = (state = initialState, action) => {
     }
 };
 
-/******  40188d7e-3b18-4df6-a1da-abe0d4f3dc65  *******/
+
 
 export default contactReducer;
 

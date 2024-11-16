@@ -7,7 +7,7 @@
     top: 100%; /* Positions it just below the header */
     right: 0; /* Aligns it to the right edge */
     transform: translateX(0); /* No need to translate */
-    background-color: #fff;
+    background-color:#F8FAFD;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     padding: 20px;
@@ -109,4 +109,62 @@
   }
   @keyframes l14 {
     to {background-position: calc(100% + 1ch)}
+  }
+
+  .container {
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .back-button {
+    cursor: pointer;
+  }
+  
+  .profile-name {
+    display: flex;
+    align-items: center;
+  }
+  
+  .profile-pic {
+    width: 40px;
+    height: 40px;
+    background-color: #ccc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+  }
+  
+  .profile-letter {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .name {
+    font-size: 18px;
+  }
+  
+  .actions {
+    display: flex;
+    align-items: center;
+  }
+  
+  .star-icon {
+    cursor: pointer;
+  }
+  
+  .contact-info {
+    margin-top: 20px;
+  }
+  
+  .email, .phone {
+    font-size: 16px;
+    color: #333;
   }

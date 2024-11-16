@@ -6,7 +6,7 @@ import CreateContact from './components/CreateContact/CreateContact';
 import Sidebar from './components/siderbar/siderbar';
 import EditContact from './components/EditContact/EditContact';
 import Profile from './components/Profile/Profile';
-// import handleViewProfile from './components/ViewProfile/ViewProfile';
+
 
 function App() {
   
@@ -24,7 +24,7 @@ function App() {
                         <Route path="/profile/:id" element={<Profile />} />
                         <Route path="/create" element={<CreateContact />} />
                         <Route path="/edit/:id" element={<EditContact />} />
-                        {/* <Route path="/view/:id" element={<handleViewProfile />} /> */}
+                      
                     </Routes>
                 </div>
             </div>
@@ -33,3 +33,8 @@ function App() {
 }
 
 export default App;
+
+
+
+
+

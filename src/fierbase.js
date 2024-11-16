@@ -1,4 +1,4 @@
-// Import the functions you need from the SDKs you need
+
 import { initializeApp } from "firebase/app"
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
@@ -7,6 +7,7 @@ import { getAuth } from "firebase/auth";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+
 const firebaseConfig = {
   apiKey: "AIzaSyAUTWXnm0tD6jep4gTMSgawcBA5BDapGO4",
   authDomain: "contacts-ffb37.firebaseapp.com",

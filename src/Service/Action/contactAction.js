@@ -35,6 +35,11 @@ const setLoading = (isLoading) => {
     };
 };
 
+const setError = (error) => ({
+    type: 'SET_ERROR',
+    payload: error,
+});
+
 
 export const addContactData = (contact) => async (dispatch) => {
     try {
@@ -70,7 +75,7 @@ export const removeContactData = (id) => async (dispatch) => {
 };
 
 export const fetchContacts = () => async (dispatch) => {
-    dispatch(setLoading(true)); // Start loading
+    dispatch(setLoading(true));
     try {
         const querySnapshot = await getDocs(collection(db, "Contact"));
         const contacts = querySnapshot.docs.map((doc) => ({
@@ -80,8 +85,9 @@ export const fetchContacts = () => async (dispatch) => {
         dispatch({ type: "FETCH_CONTACT", payload: contacts });
     } catch (error) {
         console.error("Error fetching contacts:", error.message);
+        dispatch(setError("Failed to fetch contacts. Please check your network connection.")); // Dispatch error
     } finally {
-        dispatch(setLoading(false)); // Stop loading
+        dispatch(setLoading(false));
     }
 };
 

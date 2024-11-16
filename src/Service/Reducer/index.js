@@ -5,8 +5,9 @@ import contactReducer from "./contactReducer";
 import authReducer from "./authReducer";
 
 const rootReducer = combineReducers({
-     contactReducer ,
-     authReducer 
+     contactReducer  ,
+     authReducer,
+     //  AdminReducer
 });
 
 export default rootReducer; 
