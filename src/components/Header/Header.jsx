@@ -7,7 +7,7 @@ import { auth } from '../../fierbase';
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
-    
+
     const { user } = useSelector((state) => state.authReducer);
 
 
@@ -61,8 +61,9 @@ const Header = () => {
                             <img
                                 src={user ? user.photoURL : "https://via.placeholder.com/150"}
                                 alt="User Profile"
-                                className="w-8 h-8 rounded-full"
+                                className="user-avatar"
                             />
+
                         </button>
                     </div>
 
@@ -76,6 +77,7 @@ const Header = () => {
                                         alt="User Profile"
                                         className="user-avatar"
                                     />
+
                                     <div className="user-details">
                                         {user ? (
                                             <>

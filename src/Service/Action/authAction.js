@@ -6,7 +6,7 @@ import {
     SIGN_IN_SUCCESS,
     SIGN_IN_FAILURE,
     SIGN_OUT_SUCCESS,
-} from '../../Service/Action/authAcionType'; // Ensure this path is correct
+} from '../../Service/Action/authAcionType';
 
 const provider = new GoogleAuthProvider();
 
