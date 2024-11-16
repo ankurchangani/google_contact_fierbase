@@ -10,7 +10,7 @@ const Header = () => {
     
     const { user } = useSelector((state) => state.authReducer);
 
-    
+
     const dispatch = useDispatch();
 
     const toggleDropdown = () => setIsOpen(!isOpen);
@@ -18,7 +18,7 @@ const Header = () => {
     const closeDropdown = () => setIsOpen(false);
 
     useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+        const userlogin = auth.onAuthStateChanged((currentUser) => {
             if (currentUser) {
 
                 dispatch({ type: 'SIGN_IN_SUCCESS', payload: currentUser });
@@ -26,7 +26,7 @@ const Header = () => {
                 dispatch({ type: 'SIGN_OUT_SUCCESS' });
             }
         });
-        return () => unsubscribe();
+        return () => userlogin();
     }, [dispatch]);
 
     const handleSignIn = () => {
