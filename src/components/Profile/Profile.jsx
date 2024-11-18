@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { HiOutlineArrowLeft, HiOutlinePencil, HiOutlineMail, HiOutlineCalendar, HiOutlineChat, HiOutlineVideoCamera, HiOutlinePlus, HiOutlineTrash } from 'react-icons/hi'; 
+import { HiOutlineArrowLeft, HiOutlinePencil, HiOutlineMail, HiOutlineCalendar, HiOutlineChat, HiOutlineVideoCamera, HiOutlinePlus, HiOutlineTrash } from 'react-icons/hi';
 
 import { useDispatch } from 'react-redux';
 
@@ -14,11 +14,14 @@ import { db } from '../../fierbase';
 
 const Profile = () => {
   const { id } = useParams();
+
   const [contact, setContact] = useState(null);
 
   const [loading, setLoading] = useState(true);
+
   const [error, setError] = useState(null);
-  const navigate = useNavigate(); 
+
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -26,15 +29,18 @@ const Profile = () => {
     const fetchContact = async () => {
       try {
         const docRef = doc(db, "Contact", id);
+
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
           setContact(docSnap.data());
+
         } else {
           setError("No such contact found!");
         }
       } catch (error) {
         setError("Error fetching contact.");
+
         console.error("Error fetching contact:", error);
       } finally {
         setLoading(false);
@@ -42,16 +48,16 @@ const Profile = () => {
     };
 
     fetchContact();
-  }, [id]); 
+  }, [id]);
 
   const handleEdit = () => {
     navigate(`/edit/${contact.id}`, { state: { contact } });
   }
 
   const handleRemove = (id) => {
-    // Dispatch action to remove contact by id
+
     dispatch(removeContactData(id));
-    // Navigate back to the home page after deletion
+
     navigate('/');
   }
 
@@ -95,10 +101,22 @@ const Profile = () => {
             <HiOutlinePlus size={24} />
           </div>
         </div>
+        <div>
 
-        <h1 className="text-4xl font-bold mb-6">
-          {contact?.fname ? `${contact.fname} ${contact.lname}` : "No name available"}
-        </h1>
+          <h1 className="text-3xl  text-[#1f1f1f] mb-6" >
+            {contact?.fname ? `${contact.fname} ${contact.lname}` : "No name available"}
+
+          </h1>
+          <div className="flex">
+            <p>
+              {contact?.jobtitle ? contact.jobtitle : "No job title available"}
+            </p>
+
+            <p className="ml-2">
+              {contact?.company ? contact.company : "No  company"}
+            </p>
+          </div>
+        </div>
       </div>
 
       <div className="flex gap-[30px] my-3">

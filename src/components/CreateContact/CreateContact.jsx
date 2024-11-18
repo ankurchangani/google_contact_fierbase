@@ -4,7 +4,9 @@ import { addContactData } from '../../Service/Action/contactAction';
 import { useDispatch } from 'react-redux';
 
 const CreateContact = () => {
+  
   const navigate = useNavigate();
+
   const dispatch = useDispatch();
 
   const [fromdata, setFormData] = useState({
@@ -24,12 +26,15 @@ const CreateContact = () => {
 
   const handleFrom = (e) => {
     const name = e.target.name;
+
     const value = e.target.value;
+
     setFormData({ ...fromdata, [name]: value });
   };
 
   const handleFileChange = (event) => {
     const chosenFile = event.target.files[0]; 
+
     setFile(chosenFile);
 
 
@@ -48,6 +53,8 @@ const CreateContact = () => {
  
     dispatch(addContactData(fromdata));
     
+   
+
     navigate('/');
 
 
@@ -63,6 +70,7 @@ const CreateContact = () => {
       byear: '',
       notes: '',
     });
+
     setFile(null); 
   };
   

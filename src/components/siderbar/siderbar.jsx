@@ -12,10 +12,9 @@ const Sidebar = () => {
 
     const contactCount = Array.isArray(contacts) ? contacts.length : 0;
 
-    // State to manage sidebar open/close
     const [isOpen, setIsOpen] = useState(true);
 
-    // Toggle sidebar open/close
+ 
     const toggleSidebar = () => {
         setIsOpen(!isOpen);
     };
