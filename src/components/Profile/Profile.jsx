@@ -1,15 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { HiOutlineArrowLeft, HiOutlinePencil, HiOutlineMail, HiOutlineCalendar, HiOutlineChat, HiOutlineVideoCamera, HiOutlinePlus } from 'react-icons/hi';
+
+import { HiOutlineArrowLeft, HiOutlinePencil, HiOutlineMail, HiOutlineCalendar, HiOutlineChat, HiOutlineVideoCamera, HiOutlinePlus, HiOutlineTrash } from 'react-icons/hi'; 
+
+import { useDispatch } from 'react-redux';
+
 import { useNavigate, useParams } from 'react-router-dom';
+
 import { doc, getDoc } from 'firebase/firestore';
+
+import { removeContactData } from "../../Service/Action/contactAction";
+
 import { db } from '../../fierbase';
 
 const Profile = () => {
   const { id } = useParams();
   const [contact, setContact] = useState(null);
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate(); 
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchContact = async () => {
@@ -33,7 +44,19 @@ const Profile = () => {
     fetchContact();
   }, [id]); 
 
+  const handleEdit = () => {
+    navigate(`/edit/${contact.id}`, { state: { contact } });
+  }
+
+  const handleRemove = (id) => {
+    // Dispatch action to remove contact by id
+    dispatch(removeContactData(id));
+    // Navigate back to the home page after deletion
+    navigate('/');
+  }
+
   if (loading) return <div>Loading...</div>;
+
   if (error) return <div>{error}</div>;
 
   return (
@@ -43,12 +66,15 @@ const Profile = () => {
           <HiOutlineArrowLeft size={24} />
         </button>
         <div className="flex items-center gap-[10px]">
-          <button>
+          <button onClick={handleEdit}>
             <HiOutlinePencil size={24} />
           </button>
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded-3xl shadow focus:outline-none focus:shadow-outline">
-            Edit
+
+          {/* Delete button with Trash Icon */}
+          <button onClick={() => handleRemove(contact.id)}>
+            <HiOutlineTrash size={24} />
           </button>
+
           <button>
             <HiOutlineMail size={24} />
           </button>
@@ -81,21 +107,18 @@ const Profile = () => {
             <HiOutlineMail size={24} />
           </div>
           <h6 className="text-[12px] text-center pt-1">Email</h6>
-          
         </div>
         <div>
           <div className="bg-[#E4E4E4] h-[40px] w-[40px] rounded-full flex justify-center items-center">
             <HiOutlineCalendar size={24} />
           </div>
           <h6 className="text-[12px] text-center pt-1">Phone</h6>
-        
         </div>
         <div>
           <div className="bg-[#E4E4E4] h-[40px] w-[40px] rounded-full flex justify-center items-center">
             <HiOutlineChat size={24} />
           </div>
           <h6 className="text-[12px] text-center pt-1">Birthday</h6>
-        
         </div>
         <div>
           <div className="bg-[#E4E4E4] h-[40px] w-[40px] rounded-full flex justify-center items-center">
@@ -132,7 +155,6 @@ const Profile = () => {
               : "No birthday available"}
           </h3>
         </div>
-       
       </div>
     </div>
   );
