@@ -9,7 +9,11 @@ import Profile from './components/Profile/Profile';
 
 
 function App() {
-  
+    const [searchQuery, setSearchQuery] = useState('');
+
+    const handleSearchChange = (query) => {
+        setSearchQuery(query);
+    };
 
     return (
         <div className="flex h-screen">
@@ -17,10 +21,13 @@ function App() {
                 <Sidebar />
             </div>
             <div className={`flex-1 flex flex-col transition-all duration-300 ml-64`}>
-                <Header />
+                {/* <Header /> */}
+
+                <Header searchQuery={searchQuery} onSearchChange={handleSearchChange} />
+
                 <div className="flex-1">
                     <Routes>
-                        <Route path="/" element={<Home />} />
+                        <Route path="/" element={<Home  searchQuery={searchQuery} />} />
                         <Route path="/profile/:id" element={<Profile />} />
                         <Route path="/create" element={<CreateContact />} />
                         <Route path="/edit/:id" element={<EditContact />} />

@@ -1,6 +1,3 @@
-
-
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { addContactData } from '../../Service/Action/contactAction';
@@ -23,16 +20,37 @@ const CreateContact = () => {
     notes: '',
   });
 
+  const [file, setFile] = useState(null); 
+
   const handleFrom = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     setFormData({ ...fromdata, [name]: value });
   };
 
+  const handleFileChange = (event) => {
+    const chosenFile = event.target.files[0]; 
+    setFile(chosenFile);
+
+
+  };
+
+  const handleFileUpload = () => {
+    if (file) {
+      
+      console.log('Uploading file:', file);
+     
+    }
+  };
+
   const handleSave = (e) => {
     e.preventDefault();
+ 
     dispatch(addContactData(fromdata));
+    
     navigate('/');
+
+
     setFormData({
       fname: '',
       lname: '',
@@ -45,7 +63,10 @@ const CreateContact = () => {
       byear: '',
       notes: '',
     });
+    setFile(null); 
   };
+  
+  
 
   return (
     <div className="p-8 max-w-3xl mx-auto bg-white shadow-xl rounded-lg mt-8">
@@ -216,6 +237,32 @@ const CreateContact = () => {
               max={new Date().getFullYear()}
             />
           </div>
+        </div>
+
+        {/* File Upload Section */}
+        <div className="mb-6">
+          <label className="block text-gray-700 text-sm font-medium mb-2">
+            Upload File
+          </label>
+          <input
+            type="file"
+            id="fileUpload"
+            name="fileUpload"
+            onChange={handleFileChange}
+            className="shadow-sm border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300"
+          />
+        </div>
+
+        {/* Upload Button */}
+        <div className="mb-6">
+          <button
+            type="button"
+            onClick={handleFileUpload}
+            disabled={!file} // Disable the button if no file is selected
+            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-300"
+          >
+            Upload File
+          </button>
         </div>
 
         {/* Additional Notes Section */}
